@@ -93,7 +93,7 @@ class MyApp(QWidget):
 
     def initUI(self):
         # self.setStyleSheet("background-color: grey; color: green;")
-        self.setWindowTitle('Quantum Caesar Cipher')
+        self.setWindowTitle('Program Enkripsi dan Dekripsi Kuantum Caesar Cipher (QCC) - 2200018411')
 
         vbox = QVBoxLayout()
         self.setLayout(vbox)
