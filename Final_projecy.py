@@ -1,6 +1,7 @@
 from qiskit import QuantumCircuit, transpile, assemble, Aer, execute
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QTextEdit, QLineEdit, QLabel
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QIcon
 
 def caesar_encrypt(text, shift):
     encrypted_text = ""
@@ -92,8 +93,9 @@ class MyApp(QWidget):
         self.initUI()
 
     def initUI(self):
-        # self.setStyleSheet("background-color: grey; color: green;")
-        self.setWindowTitle('Program Enkripsi dan Dekripsi Kuantum Caesar Cipher (QCC) - 2200018411')
+        self.setStyleSheet("background-color: #F0F0F0; color: #333333;")
+        self.setWindowTitle('Program Enkripsi dan Dekripsi Kuantum Caesar Cipher (QCC) v1.0')
+        self.setWindowIcon(QIcon('decryption.png'))
 
         vbox = QVBoxLayout()
         self.setLayout(vbox)
@@ -110,12 +112,17 @@ class MyApp(QWidget):
         self.lineEditShift = QLineEdit()
         vbox.addWidget(self.lineEditShift)
 
-        self.btnEncrypt = QPushButton('Enkripsi', self)
+        self.btnEncrypt = QPushButton(' Enkripsi', self)
+        self.btnEncrypt.setIcon(QIcon('encrypt.png'))
+        self.btnEncrypt.setStyleSheet("background-color: #4CAF50; color: black;")
         self.btnEncrypt.clicked.connect(self.encrypt)
         vbox.addWidget(self.btnEncrypt)
 
-        self.btnDecrypt = QPushButton('Dekripsi', self)
+        self.btnDecrypt = QPushButton(' Dekripsi', self)
+        self.btnDecrypt.setIcon(QIcon('decrypt.png'))
+        self.btnDecrypt.setStyleSheet("background-color: #2196F3; color: black;")
         self.btnDecrypt.clicked.connect(self.decrypt)
+        vbox.addWidget(self.btnDecrypt)
         vbox.addWidget(self.btnDecrypt)
 
         self.labelResult = QLabel('Hasil:')
@@ -123,6 +130,10 @@ class MyApp(QWidget):
 
         self.textEditResult = QTextEdit()
         vbox.addWidget(self.textEditResult)
+
+        self.labelCreator = QLabel('Created by Reyhansssan Islamey - 2200018411')
+        self.labelCreator.setAlignment(Qt.AlignCenter)
+        vbox.addWidget(self.labelCreator)
 
         self.setGeometry(300, 300, 300, 200)
         self.show()
