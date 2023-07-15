@@ -16,7 +16,6 @@ def caesar_encrypt(text, shift):
 # Memasukkan teks dan pergeseran dari pengguna
 text = input("Masukkan teks yang akan dienkripsi: ")
 shift = int(input("Masukkan jumlah pergeseran: "))
-
 encrypted_text = caesar_encrypt(text, shift)
 # print("Teks terenkripsi:", encrypted_text)
 
@@ -40,8 +39,30 @@ def get_key_from_cesar(shift):
     key_binary = format(ord(key), '08b')
     return key_binary
 
+key = get_key_from_cesar(shift)
+
+def most_frequent_bit(key):
+    count_0 = 0
+    count_1 = 0
+    
+    for bit in key:
+        if bit == '0':
+            count_0 += 1
+        elif bit == '1':
+            count_1 += 1
+    
+    if count_0 > count_1:
+        return 0
+    else:
+        return 1
+
+# print("Kunci:", key)
+# print("Bit yang paling sering muncul:", most_frequent_bit(key))
+
+key_qubit = most_frequent_bit(key)
+
 # Fungsi untuk mengenkripsi pesan
-def encrypt_message(message, key):
+def encrypt_message(message, key_qubit):
     # Inisialisasi sirkuit kuantum dengan panjang pesan
     circuit = QuantumCircuit(len(message), len(message))
 
@@ -76,4 +97,5 @@ def encrypt_message(message, key):
 message = binary
 key = get_key_from_cesar(shift)
 encrypted_message = encrypt_message(message, key)
+
 print("Pesan terenkripsi:", encrypted_message)
