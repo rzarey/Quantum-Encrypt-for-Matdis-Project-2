@@ -11,10 +11,13 @@ Langkah-langkah
 ```pip install PyQt5 ```
 - Install Qiskit
 ```pip install qiskit```
-Install PySide2
+- Install PySide2
 ```pip install PySide2```
-Clone repo ini
+- Clone repo ini
 git clone <repo url>
-Jalankan aplikasi
+- Jalankan aplikasi
 ```python Final_project.py```
-Aplikasi siap digunakan!
+- Aplikasi siap digunakan!
+
+# Creators
+Reyhanssan islamey
