@@ -14,7 +14,7 @@ Langkah-langkah
 - Install PySide2
 ```pip install PySide2```
 - Clone repo ini
-git clone <repo url>
+```git clone https://github.com/rzarey/Quantum-Encrypt-for-Matdis-Project-2.git```
 - Jalankan aplikasi
 ```python Final_project.py```
 - Aplikasi siap digunakan!
