@@ -98,3 +98,7 @@ message = binary
 key = get_key_from_cesar(shift)
 encrypted_message = encrypt_message(message, key)
 print("Pesan terenkripsi:", encrypted_message)
+
+
+
+

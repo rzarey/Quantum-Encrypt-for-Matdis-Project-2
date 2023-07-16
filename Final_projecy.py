@@ -1,7 +1,7 @@
 from qiskit import QuantumCircuit, transpile, assemble, Aer, execute
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QTextEdit, QLineEdit, QLabel
-from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QTextEdit, QLineEdit, QLabel, QFileDialog
 from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import Qt
 
 def caesar_encrypt(text, shift):
     encrypted_text = ""
@@ -123,7 +123,18 @@ class MyApp(QWidget):
         self.btnDecrypt.setStyleSheet("background-color: #2196F3; color: black;")
         self.btnDecrypt.clicked.connect(self.decrypt)
         vbox.addWidget(self.btnDecrypt)
-        vbox.addWidget(self.btnDecrypt)
+
+        self.btnSave = QPushButton(' Simpan', self)
+        self.btnSave.setIcon(QIcon('save.png'))
+        self.btnSave.setStyleSheet("background-color: #f44336; color: black;")
+        self.btnSave.clicked.connect(self.save)
+        vbox.addWidget(self.btnSave)
+
+        self.btnOpen = QPushButton(' Buka', self)
+        self.btnOpen.setIcon(QIcon('open.png'))
+        self.btnOpen.setStyleSheet("background-color: #FF9800; color: black;")
+        self.btnOpen.clicked.connect(self.open)
+        vbox.addWidget(self.btnOpen)
 
         self.labelResult = QLabel('Hasil:')
         vbox.addWidget(self.labelResult)
@@ -157,6 +168,22 @@ class MyApp(QWidget):
         text = binary_to_text(decrypted_message)
         decrypted_text = caesar_encrypt(text, -shift)
         self.textEditResult.setText(decrypted_text)
+
+    def save(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getSaveFileName(self,"Simpan file","","All Files (*);;Text Files (*.txt)", options=options)
+        if fileName:
+            with open(fileName, 'w') as f:
+                f.write(self.textEditResult.toPlainText())
+
+    def open(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getOpenFileName(self,"Buka file","","All Files (*);;Text Files (*.txt)", options=options)
+        if fileName:
+            with open(fileName, 'r') as f:
+                self.textEditResult.setText(f.read())
 
 if __name__ == '__main__':
     import sys
